@@ -1,8 +1,4 @@
 {
-  "env": {
-    "GEMINI_API_KEY": "@gemini-api-key",
-    "PROXY_SECRET_TOKEN": "@proxy-secret-token"
-  },
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install"
