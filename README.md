@@ -2,21 +2,56 @@
 
 极简、高性能 Gemini API 私有代理服务，专为 Vercel Edge Runtime 优化。
 
+## 功能特性
+
+- ✅ **Gemini API 代理**：安全的 Gemini API 访问代理
+- ✅ **长文生成**：基于主题自动生成 10000 字长文（新功能）
+- ✅ Edge Runtime：全球边缘节点部署
+- ✅ 零配置：开箱即用
+
+## API 端点
+
+### 1. Gemini API 代理
+```
+POST /api/gemini
+```
+简单的 Gemini API 代理，支持 Bearer Token 认证。
+
+**详细文档**：见下文 "核心代码" 部分
+
+### 2. 长文生成 API（新）
+```
+POST /api/generate-article
+```
+根据主题自动生成约 10000 字的长文，返回 Markdown 格式。
+
+**详细文档**：[API_USAGE.md](./API_USAGE.md)
+
+**快速示例**：
+```bash
+curl -X POST https://gaccess.inkpath.cc/api/generate-article \
+  -H "Content-Type: application/json" \
+  -d '{"topic": "人工智能的发展与未来"}'
+```
+
 ## 文件结构
 
 ```
 G-access/
 ├── app/
-│   ├── api/gemini/
-│   │   └── route.ts      # POST /api/gemini 处理器
-│   ├── layout.tsx         # 根布局
-│   ├── page.mdx           # 首页
-│   └── page.tsx           # 首页 (备选)
-├── .env.example           # 环境变量示例
+│   ├── api/
+│   │   ├── gemini/
+│   │   │   └── route.ts           # POST /api/gemini 处理器
+│   │   └── generate-article/
+│   │       └── route.ts           # POST /api/generate-article 处理器
+│   ├── layout.tsx                 # 根布局
+│   └── page.tsx                   # 首页
+├── .gitignore
+├── API_USAGE.md                   # 长文生成 API 文档
 ├── package.json
 ├── tsconfig.json
 ├── next.config.js
-└── vercel.json            # Vercel 配置
+└── vercel.json                    # Vercel 配置
 ```
 
 ## 核心代码
